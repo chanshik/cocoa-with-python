@@ -19,7 +19,9 @@ class RandomGeneratorController(NSWindowController):
         NSWindowController.windowDidLoad(self)
 
         self.number = 0
-        self.updateDisplay()
+
+        now = NSDate.date()
+        self.numberTextField.setStringValue_(str(now))
 
     def windowShouldClose_(self, sender):
         NSLog('windowShouldClose')
