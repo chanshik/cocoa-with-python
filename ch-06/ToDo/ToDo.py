@@ -4,8 +4,8 @@ from PyObjCTools import AppHelper
 
 
 class ToDoController(NSWindowController):
-    item_textfield = objc.IBOutlet();
-    tableView = objc.IBOutlet();
+    item_textfield = objc.IBOutlet()
+    tableView = objc.IBOutlet()
     todos = []
 
     def awakeFromNib(self):
