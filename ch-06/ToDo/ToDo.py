@@ -5,7 +5,7 @@ from PyObjCTools import AppHelper
 
 class ToDoController(NSWindowController):
     item_textfield = objc.IBOutlet();
-    todo_table = objc.IBOutlet();
+    tableView = objc.IBOutlet();
     todos = []
 
     def awakeFromNib(self):
@@ -21,6 +21,10 @@ class ToDoController(NSWindowController):
 
     def windowWillClose_(self, notification):
         NSLog('windowWillClose')
+
+        print "Data: "
+        print "\n".join(self.todos)
+
         AppHelper.stopEventLoop()
 
     def applicationShouldTerminateAfterLastWindowClosed_(self, sender):
@@ -35,7 +39,7 @@ class ToDoController(NSWindowController):
             return
 
         self.todos.append(item)
-        self.todo_table.reloadData()
+        self.tableView.reloadData()
 
         NSLog('createNewItem: ' + item)
 
@@ -51,16 +55,20 @@ class ToDoController(NSWindowController):
 
         return self.todos[rowIndex]
 
-    #def tableView_setObjectValue_forTableColumn_row_(
-    #        self, aTableView, anObject, aTableColumn, rowIndex):
-    #    pass
+    def tableView_setObjectValue_forTableColumn_row_(
+           self, aTableView, anObject, aTableColumn, rowIndex):
+
+        NSLog("Changed: " + self.todos[rowIndex] + " --> " + anObject)
+
+        self.todos[rowIndex] = anObject
+        self.tableView.reloadData()
 
     # delegate methods
     def tableView_shouldSelectRow_(self, aTableView, rowIndex):
         return True
 
     def tableView_shouldEditTableColumn_row_(self, aTableView, aTableColumn, rowIndex):
-        return False
+        return True
 
     def tableViewSelectionDidChange_(self, notification):
         row = self.tableView.selectedRow()
