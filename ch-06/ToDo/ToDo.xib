@@ -7,6 +7,7 @@
         <customObject id="-2" userLabel="File's Owner" customClass="ToDoController">
             <connections>
                 <outlet property="item_textfield" destination="gJJ-Vo-Lgi" id="RU4-5G-cK7"/>
+                <outlet property="tableView" destination="PBt-lh-bqd" id="bdF-Hm-xCe"/>
                 <outlet property="todo_table" destination="PBt-lh-bqd" id="vmX-Hy-lEl"/>
                 <outlet property="window" destination="1" id="muf-7U-XBj"/>
             </connections>
