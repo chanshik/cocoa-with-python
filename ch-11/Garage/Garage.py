@@ -4,9 +4,8 @@ from PyObjCTools import AppHelper
 
 
 class Garage(NSWindowController):
-    item_textfield = objc.IBOutlet();
-    todo_table = objc.IBOutlet();
-    todos = []
+    tableView = objc.IBOutlet()
+    db = []
 
     def awakeFromNib(self):
         NSLog('awakeFromNib')
@@ -28,19 +27,12 @@ class Garage(NSWindowController):
         return True
 
     @objc.IBAction
-    def createNewItem_(self, sender):
-        item = self.item_textfield.stringValue()
+    def add_(self, sender):
+        pass
 
-        if len(item.strip()) == 0:
-            return
-
-        self.todos.append(item)
-        self.todo_table.reloadData()
-
-        NSLog('createNewItem: ' + item)
-
-        self.item_textfield.setStringValue_('')
-        self.window().makeFirstResponder_(self.item_textfield)
+    @objc.IBAction
+    def remove_(self, sender):
+        pass
 
     # data source methods
     def numberOfRowsInTableView_(self, aTableView):
